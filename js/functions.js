@@ -54,14 +54,68 @@ timeline.fromTo(
   { duration: 4, opacity: 1, scale: 1, rotation: -360, yoyo: true }
 );
 
-let menu = document.querySelector("#menuBox"),
-    itemMenu = Array.from(menu.querySelectorAll("li a"));
+let wrapper = document.querySelector(".wrapper")
+let menu = document.querySelector("#menuBox")
+let logo = document.querySelector(".logo-inside")
+let toggle = document.querySelector("#menuToggle")
+let showMenu = document.querySelector(".showMenu")
+let closeMenu = document.querySelector(".closeMenu")
+let itemMenu = menu.querySelectorAll("li");
+let dialogo = document.getElementById("dialogo")
+let territorios = document.getElementById("territorios")
+let resistencias = document.getElementById("resistencias")
+let fuerza = document.getElementById("fuerza")
+let naciones = document.getElementById("naciones")
 
+const fondos = [
+  {
+  Element:dialogo,
+  class:"dialogobg"
+  },
+  {
+    Element:territorios,
+    class:"territoriosbg"
+  },
+  {
+    Element:resistencias,
+    class:"resistenciasbg"
+  },
+  {
+    Element:fuerza,
+    class:"fuerzabg"
+  },
+  {
+    Element:naciones,
+    class:"nacionesbg"
+  }
+]
 
-let changeBg = function(){
-  menu.set(this, 0.2, {backgroundColor:'red'});
+fondos.forEach(fondo => {
+  fondo.Element.addEventListener("mouseenter", ()=>{menu.classList.add(fondo.class)})
+  fondo.Element.addEventListener("mouseleave", ()=>{menu.classList.remove(fondo.class)})
+})
+
+showMenu.addEventListener('click', openMenu);
+
+function openMenu(){
+  menu.classList.add('openMenu')
+  wrapper.classList.add('hide')
+  toggle.classList.add('closeMenu')
+  toggle.classList.remove('showMenu')
+  container.classList.add('lock-scroll')
+  logo.classList.remove('logo-scroll')
 }
 
-itemMenu.addEventListener("click", changeBg);
+closeMenu.addEventListener('click', hideMenu);
 
+function hideMenu(){
+  menu.classList.remove('openMenu')
+  wrapper.classList.remove('hide')
+  toggle.classList.remove('closeMenu')
+  toggle.classList.add('showMenu')
+  container.classList.remove('lock-scroll')
+  if(scroll >= 200) {
+    logo.classList.add('logo-scroll')
+  }
 
+}

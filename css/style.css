@@ -135,17 +135,34 @@ nav#menuBox{
   z-index: 999;
   width: 100vw;
   height: 100vh;
-  background-color: var(--green);
+  background-image: url(../images/menu-back-white.png);
+  background-blend-mode: multiply;
   text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: all 1s ease-in-out;
 }
 
 nav#menuBox .lead{
-  display: none;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+  color: #ffefd1;
+  font-family: Bitter, serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.5;
+  display: block;
+  transition: all .8s .5s ease-in-out;
 }
 
 #menuBox ul li {
-  width: 35vw;
-  height: 35vw;
+  width: 0vw;
+  height: 0vw;
   z-index: 600;
   opacity: 1;
   border-radius: 50%;
@@ -156,6 +173,11 @@ nav#menuBox .lead{
   top: 0;
   left: 0;
   transform: translate(-50%, -50%);
+  transition: all 1s ease-in-out;
+}
+
+#menuBox ul:hover li a{
+  opacity: .2;
 }
 
 #menuBox ul li:first-child{
@@ -199,6 +221,14 @@ nav#menuBox .lead{
   transform:  scale(1.2);
   z-index: 99;
   transition: all .8s ease-in-out;
+  opacity: 1 !important;
+}
+
+#menuBox ul li a:hover .lead{
+  display: block;
+  opacity: 1;
+  transition: all .8s .5s ease-in-out;
+  height: 60px;
 }
 
 #menuBox ul li a .trama{
@@ -225,34 +255,34 @@ nav#menuBox .lead{
   position: absolute;
 }
 
-#menuBox ul li:nth-child(1) a .trama{
+#menuBox ul li:nth-child(1) > a .trama{
   -webkit-mask-image: url(../images/menu-trama-1.svg);
   mask-image: url(../images/menu-trama-1.svg);
-  animation: 10s infinite der linear;
+  animation: 30s infinite der linear;
 }
 
-#menuBox ul li:nth-child(2) a .trama{
+#menuBox ul li:nth-child(2) > a .trama{
   -webkit-mask-image: url(../images/menu-trama-2.svg);
   mask-image: url(../images/menu-trama-2.svg);
-  animation: 15s infinite izq linear;
+  animation: 35s infinite izq linear;
 }
 
-#menuBox ul li:nth-child(3) a .trama{
+#menuBox ul li:nth-child(3) > a .trama{
   -webkit-mask-image: url(../images/menu-trama-3.svg);
   mask-image: url(../images/menu-trama-3.svg);
-  animation: 8s infinite der linear;
+  animation: 28s infinite der linear;
 }
 
-#menuBox ul li:nth-child(4) a .trama{
+#menuBox ul li:nth-child(4) > a .trama{
   -webkit-mask-image: url(../images/menu-trama-4.svg);
   mask-image: url(../images/menu-trama-4.svg);
-  animation: 18s infinite izq linear;
+  animation: 38s infinite izq linear;
 }
 
-#menuBox ul li:nth-child(5) a .trama{
+#menuBox ul li:nth-child(5) > a .trama{
   -webkit-mask-image: url(../images/menu-trama-5.svg);
   mask-image: url(../images/menu-trama-5.svg);
-  animation: 12s infinite der linear;
+  animation: 32s infinite der linear;
 }
 
 #menuBox ul li a .name .title{
@@ -260,12 +290,154 @@ nav#menuBox .lead{
   color: white;
   margin-bottom: 2%;
   font-family: var(--font-curaduria);
-  font-size: calc(1.7vw + 1.3vh);
+  font-size: 0;
   font-style: normal;
   font-weight: 500;
   line-height: 1.2;
+  transition: all 1s ease-in-out;
 }
 
+.openMenu#menuBox ul li{
+  width: 35vw;
+  height: 35vw;
+  transition: all 1s ease-in-out;
+}
+
+.openMenu#menuBox ul li a .name .title{
+  font-size: calc(1.7vw + 1.3vh);
+  transition: all 1s .5s ease-in-out;
+}
+
+.dialogobg{
+  background-image: url(../images/menu-back-1.jpg) !important;
+  background-color: var(--green) !important;
+}
+
+.territoriosbg{
+  background-image: url(../images/menu-back-2.jpg) !important;
+  background-color: var(--teal) !important;
+}
+
+.resistenciasbg{
+  background-image: url(../images/menu-back-3.jpg) !important;
+  background-color: var(--yellow) !important;
+}
+
+.fuerzabg{
+  background-image: url(../images/menu-back-4.jpg) !important;
+  background-color: var(--orange) !important;
+}
+
+.nacionesbg{
+  background-image: url(../images/menu-back-5.jpg) !important;
+  background-color: var(--blue) !important;
+}
+
+
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 0px;
+  left: 0px;  
+  z-index: 999;  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle a
+{
+  text-decoration: none;
+  color: #232323;  
+  transition: color 0.3s ease;
+}
+
+#menuToggle a:hover
+{
+  color: tomato;
+}
+
+
+#menuToggle input
+{
+  display: block;
+  width: 66px;
+  height: 43px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  
+  cursor: pointer;
+  
+  opacity: 0;
+  z-index: 2;
+  
+  -webkit-touch-callout: none;
+}
+
+#menuToggle span
+{
+  display: block;
+  width: 50px;
+  height: 3px;
+  margin-bottom: 12px;
+  position: relative;
+  
+  background: #fff;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -32px);
+  background: #fff;
+}
+
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, 30px);
+}
+
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+.controlsMenu{
+  position: fixed;
+  z-index: 1000;
+  top: 35px;
+  right: 35px;
+}
+
+.lock-scroll{
+  overflow: hidden !important;
+}
   
 @keyframes izq {
   from {
@@ -362,9 +534,19 @@ p.curaduria, h4.destacado2{
   mix-blend-mode: multiply;
 }
 
+.yellow-background{
+  background-color: var(--yellow);
+}
+
 .wrapper{
   position: relative;
   z-index: 1;
+  transition: all 1s ease-in-out;
+}
+
+.wrapper.hide{
+  opacity: 0;
+  transition: all 1s ease-in-out;
 }
 
 /*h4.destacado2{
@@ -644,10 +826,9 @@ footer{
 
 header{
   position: fixed;
-  background-color: rgba(255, 255, 255, .7);
-  padding: 20px 10px;
+  padding: 32px 10px;
   width: 100%;
-  z-index: 999;
+  z-index: 1000;
 }
 
 h1{
@@ -900,7 +1081,8 @@ section.registro-victimas{
 }
 
 .logo-inside{
-  max-width: 370px;
+  max-width: 250px;
+  margin: 0 auto;
   transition: all .3s ease-in-out;
 }
 
@@ -921,6 +1103,7 @@ header{
 
 header a{
   transition: all .3s ease-in-out;
+  display: contents;
 }
 
 .header-fixed a{
