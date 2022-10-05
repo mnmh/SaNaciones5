@@ -95,27 +95,24 @@ fondos.forEach(fondo => {
   fondo.Element.addEventListener("mouseleave", ()=>{menu.classList.remove(fondo.class)})
 })
 
-showMenu.addEventListener('click', openMenu);
-
-function openMenu(){
-  menu.classList.add('openMenu')
-  wrapper.classList.add('hide')
-  toggle.classList.add('closeMenu')
-  toggle.classList.remove('showMenu')
-  container.classList.add('lock-scroll')
-  logo.classList.remove('logo-scroll')
-}
-
-closeMenu.addEventListener('click', hideMenu);
-
-function hideMenu(){
-  menu.classList.remove('openMenu')
-  wrapper.classList.remove('hide')
-  toggle.classList.remove('closeMenu')
-  toggle.classList.add('showMenu')
-  container.classList.remove('lock-scroll')
-  if(scroll >= 200) {
-    logo.classList.add('logo-scroll')
+let openMenu = function(){
+  if (toggle.classList.contains('showMenu')) {
+      menu.classList.add('openMenu')
+      wrapper.classList.add('hide')
+      toggle.classList.add('closeMenu')
+      toggle.classList.remove('showMenu')
+      container.classList.add('lock-scroll')
+      logo.classList.remove('logo-scroll')
+  } else if(toggle.classList.contains('closeMenu')){
+      menu.classList.remove('openMenu')
+      wrapper.classList.remove('hide')
+      toggle.classList.remove('closeMenu')
+      toggle.classList.add('showMenu')
+      container.classList.remove('lock-scroll')
+      if(scroll >= 200) {
+        logo.classList.add('logo-scroll')
+      }
   }
-
 }
+
+toggle.addEventListener('click', openMenu);

@@ -2169,6 +2169,16 @@ padding:0;
 
 /***FIN MAPA****/
 
+.mask-image{
+  -webkit-mask-image: url(../images/clipImg.svg);
+  -webkit-mask-position: bottom;
+  -webkit-mask-size: cover;
+  mask-image: url(../images/clipImg.svg);
+  mask-position: bottom;
+  mask-size: cover;
+  border-radius: 20px;
+}
+
 @media screen and (max-width: 767px){
   header{
     padding: 0;
