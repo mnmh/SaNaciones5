@@ -1,5 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
+
 let getRatio = (el) =>
   window.innerHeight / (window.innerHeight + el.offsetHeight);
 
@@ -31,7 +32,6 @@ gsap
   .timeline({
     defaults: { duration: 2 },
     scrollTrigger: {
-      markers: true,
       trigger: container,
       start: "top top",
       end: "bottom bottom",
@@ -95,9 +95,14 @@ fondos.forEach(fondo => {
   fondo.Element.addEventListener("mouseleave", ()=>{menu.classList.remove(fondo.class)})
 })
 
+window.addEventListener('load', (event) => {
+  menu.setAttribute("hidden", true);
+});
+
 let openMenu = function(){
   if (toggle.classList.contains('showMenu')) {
       menu.classList.add('openMenu')
+      menu.removeAttribute("hidden");
       wrapper.classList.add('hide')
       toggle.classList.add('closeMenu')
       toggle.classList.remove('showMenu')
@@ -112,6 +117,9 @@ let openMenu = function(){
       if(scroll >= 200) {
         logo.classList.add('logo-scroll')
       }
+      setTimeout(function () {
+        menu.setAttribute("hidden", true);
+      }, 1000);
   }
 }
 
